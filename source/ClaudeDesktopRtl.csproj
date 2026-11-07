@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Variant Condition="'$(Variant)' == ''">Enable</Variant>
+
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ClaudeDesktopRtl</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+
+    <Product>Claude Desktop RTL</Product>
+    <Version>2.0.0</Version>
+    <Copyright>Aly Abdullah</Copyright>
+
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    <EventSourceSupport>false</EventSourceSupport>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Variant)' == 'Enable'">
+    <AssemblyName>ClaudeDesktopRtl</AssemblyName>
+    <AssemblyTitle>Enable Arabic RTL for Claude Desktop</AssemblyTitle>
+    <ApplicationIcon>assets\enable.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Variant)' == 'Disable'">
+    <AssemblyName>ClaudeDesktopRtl.Disable</AssemblyName>
+    <AssemblyTitle>Disable Arabic RTL for Claude Desktop</AssemblyTitle>
+    <ApplicationIcon>assets\disable.ico</ApplicationIcon>
+    <DefineConstants>$(DefineConstants);DISABLE_BUILD</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="snippet\claude-rtl-snippet.js" LogicalName="claude-rtl-snippet.js" />
+  </ItemGroup>
+
+</Project>
